@@ -1,6 +1,6 @@
 import soundfile as sf
 import sounddevice as sd
-from effects import tremolo
+from DeepSeek_code.effects import tremolo
 
 data, fs = sf.read("clean-guitar-riff_E_minor.wav")
 
