@@ -41,7 +41,7 @@ plt.xlabel('Время (с)')
 plt.ylabel('LFO')
 plt.title('Управляющий сигнал LFO')
 plt.grid(True)
-
+ 
 plt.tight_layout()
 plt.show()
 
@@ -70,4 +70,12 @@ plt.show()
 
 # Спектрограмма
 
-
+plt.figure(figsize=(12, 6))
+plt.specgram(output[:, 0], Fs=fs, NFFT=2048, noverlap=1024, cmap='inferno')
+plt.xlabel("Время (с)")
+plt.ylabel("Частота (Гц)")
+plt.title("Спектрограмма выхода (тремоло)")
+plt.colorbar(label="Интенсивность (дБ)")
+plt.tight_layout()
+plt.savefig("spectrogram.png", dpi=150)
+plt.show()
