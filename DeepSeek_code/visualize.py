@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt 
 import soundfile as sf
-from DeepSeek_code.effects import tremolo
+from effects import tremolo
 
 # Находим lfo на 0.1 секунде 
 
