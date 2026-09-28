@@ -62,6 +62,8 @@ plt.figure(figsize=(12, 8))
 
 plt.subplot(2, 1, 1)
 plot_spectrum(data[:, 0], fs, "Спектр входа")
+
+plt.subplot(2, 1, 2)
 plot_spectrum(output[:, 0], fs, "Спектр выхода (тремоло)")
 
 plt.tight_layout()

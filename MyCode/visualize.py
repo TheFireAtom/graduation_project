@@ -7,8 +7,8 @@ from effects import Tremolo
 
 data, fs = sf.read("clean-guitar-riff_E_minor.wav")
 
-rate = 0.5
-depth = 0.5
+rate = 5.0
+depth = 0.9
 
 tr = Tremolo(rate, depth)
 output = tr.process(data, fs)
@@ -42,6 +42,37 @@ plt.grid(True)
 plt.tight_layout()
 plt.show()
 
-# Second plot
+# Spectre (FFT)
 
-# plt.plot(np.fft.rfftfreq())
+def fft_spectrum(signal, fs, title):
+    N = len(signal)
+    yf = np.fft.rfft(signal)
+    xf = np.fft.rfftfreq(N, 1/fs)
+
+    plt.plot(xf, yf)
+    plt.title(title)
+    plt.xlabel("Frequency")
+    plt.ylabel("Magnitude")
+    plt.grid(True)
+
+plt.figure(figsize=(12, 8))
+
+plt.subplot(2, 1, 1)
+fft_spectrum(data[:, 0], fs, "FFT spectrum, input data")
+
+plt.subplot(2, 1, 2)
+fft_spectrum(output[:, 0], fs, "FFT spectrum, output data")
+
+plt.show
+
+# Spectrum
+
+plt.figure(figsize=(12, 8))
+plt.specgram(output[:, 0], Fs=fs, NFFT=2048, noverlap=1024, cmap="inferno")
+plt.title("Spectrogram")
+plt.xlabel("Time")
+plt.ylabel("Frequency")
+plt.colorbar(label="Intencity")
+plt.tight_layout()
+plt.grid(True)
+plt.show()
